@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Certificate Awarded By Me</title>
+</head>
+<body>
+    {% include 'login_info.html' %}
+    <table>
+        <tr>
+            <th>
+                Awarded To
+            </th>
+            <th>
+                Certificate Name
+            </th>
+            <th>
+                Awarded By
+            </th>
+        </tr>
+    {% for certificate in certificates %}
+        <tr>
+            <td>
+                {{ certificate.awarded_to }}
+            </td>
+            <td>
+                {{ certificate.name }}
+            </td>
+            <td>
+                {{ certificate.awarded_by }}
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+</body>
+</html>

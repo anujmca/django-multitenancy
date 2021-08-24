@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% include 'login_info.html' %}
+    <table>
+        <tr>
+            <th>
+                Certificate Name
+            </th>
+            <th>
+                Awarded By
+            </th>
+        </tr>
+    {% for certificate in certificates %}
+        <tr>
+            <td>
+                {{ certificate.name }}
+            </td>
+            <td>
+                {{ certificate.awarded_by }}
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+</body>
+</html>

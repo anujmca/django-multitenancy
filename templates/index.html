@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% include 'login_info.html' %}
+    {% if schema_name == 'public' %}
+        <a href="{% url 'public_mycertificates' %}">my certificates</a>
+    {% else %}
+    <br>
+    <div>
+        Create
+        <hr>
+        <div>
+            User
+            <form action="{% url 'public_createuser' %}" method="post">
+                {% csrf_token %}
+                <span>user name</span>
+                <input type="text" name="public_username">
+                <span><button type="submit">Create User</button></span>
+            </form>
+        </div>
+        <hr>
+        <div>
+            Certificate
+            <form action="{% url 'public_createcertificate' %}" method="post">
+                {% csrf_token %}
+                <div>
+                    <span>user name</span><input type="text" name="public_username">
+                </div>
+                <div>
+                    <span>certificate name</span><input type="text" name="certificate_name">
+                    <span><button type="submit">Create Certificate</button></span>
+                </div>
+
+            </form>
+        </div>
+        {% if created %}
+            {% if user %}
+                Created Public User - {{ public_user.username }} (id: {{ public_user.id }}
+            {% endif %}
+            {% if certificate %}
+                Awarded - {{ certificate.name }} (id: {{ certificate.id }} to {{ certificate.awardee.username }} (id: {{certificate.awardee.id}})
+            {% endif %}
+        {% endif %}
+    </div>
+    <br>
+    <div>
+        <a href="{% url 'certificates_awarded_by_me' %}">Certificates Awarded by Me</a>
+    </div>
+    {% endif %}
+</body>
+</html>
