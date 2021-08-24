@@ -39,10 +39,10 @@
         </div>
         {% if created %}
             {% if user %}
-                Created Public User - {{ public_user.username }} (id: {{ public_user.id }}
+                Created Public User - {{ public_user.username }} (id: {{ public_user.id }})
             {% endif %}
             {% if certificate %}
-                Awarded - {{ certificate.name }} (id: {{ certificate.id }} to {{ certificate.awardee.username }} (id: {{certificate.awardee.id}})
+                Awarded - {{ certificate.name }} (id: {{ certificate.id }}) to {{ certificate.awardee.username }} (id: {{certificate.awardee.id}})
             {% endif %}
         {% endif %}
     </div>

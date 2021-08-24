@@ -1,4 +1,5 @@
 from django.contrib.auth import login as django_login, logout as django_logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.db import connection
@@ -40,13 +41,14 @@ def index(request):
         schema_name = connection.schema_name
         return render(request, 'index.html', context={'schema_name': schema_name})
 
-
+@login_required
 def public_createuser(request):
     user = p_createuser(request)
 
-    return render(request, 'index.html', context={'created': True, 'user': user})
+    return render(request, 'index.html', context={'created': True, 'public_user': user})
 
 
+@login_required
 def public_create_certificate(request):
     public_username = request.POST['public_username']
     certificate_name = request.POST['certificate_name']
@@ -54,6 +56,7 @@ def public_create_certificate(request):
     return render(request, 'index.html', context={'created': True, 'certificate': certificate})
 
 
+@login_required
 def public_mycertificates(request):
     certificates = Certificate.objects.filter(awardee=request.user)
     return render(request, 'mycertificates.html', context={'certificates': certificates})
